@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+    </application>
+    <managed-bean>
+        <managed-bean-name>personManager</managed-bean-name>
+        <managed-bean-class>com.nlpp.view.PersonManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>managerPerson</property-name>
+            <value>#{managerPerson}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>categoryManager</managed-bean-name>
+        <managed-bean-class>com.nlpp.view.CategoryManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>managerCategory</property-name>
+            <value>#{managerCategory}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>eventsManager</managed-bean-name>
+        <managed-bean-class>com.nlpp.view.EventsManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>managerEvents</property-name>
+            <value>#{managerEvents}</value>
+        </managed-property>
+         <managed-property>
+            <property-name>managerEmail</property-name>
+            <value>#{managerEmail}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>commentManager</managed-bean-name>
+        <managed-bean-class>com.nlpp.view.CommentManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>managerComment</property-name>
+            <value>#{managerComment}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>enrollEventManager</managed-bean-name>
+        <managed-bean-class>com.nlpp.view.EnrollEventManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>managerEnrollEvent</property-name>
+            <value>#{managerEnrollEvent}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>pEnrollEvent</property-name>
+            <value>#{pEnrollEvent}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>emailRecieverManager</managed-bean-name>
+        <managed-bean-class>com.nlpp.view.EmailRecieverEventCategoryManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>managerEmailReciever</property-name>
+            <value>#{managerEmailReciever}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>mCategory</property-name>
+            <value>#{mCategory}</value>
+        </managed-property>
+    </managed-bean>
+</faces-config>

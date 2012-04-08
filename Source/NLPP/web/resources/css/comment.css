@@ -1,0 +1,85 @@
+.news_title {
+    overflow: hidden;
+    text-align: center;
+    width: 470px;
+}
+.news_title a {
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.comment {
+    overflow: hidden;
+    width: 100%;
+}
+.comment .header {
+    background-image: url("../../images/icon/commment_icon.jpg");
+    background-position: 0 0;
+    height: 30px;
+    width: 470px;
+}
+.comment .item {
+    float: left;
+    padding-top: 3px;
+    width: 458px;
+}
+.comment .item .top {
+    background-image: url("../../images/icon/commment_icon.jpg");
+    background-position: 0 -30px;
+    height: 7px;
+    width: 458px;
+}
+.comment .item .middle {
+    border-bottom: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    float: left;
+    width: 456px;
+}
+.comment .item .middle .name {
+    float: left;
+    padding-left: 10px;
+    padding-top: 6px;
+    width: 446px;
+}
+.comment .item .middle .name .icon {
+    background-image: url("../../images/icon/commment_icon.jpg");
+    background-position: 0 -60px;
+    float: left;
+    height: 16px;
+    width: 16px;
+}
+.comment .item .middle .name .text {
+    color: #E20A17;
+    float: left;
+    font-family: Arial;
+    font-size: 11px;
+    font-weight: bold;
+    padding-left: 7px;
+    padding-top: 4px;
+}
+.comment .item .middle .name .date {
+    color: #999999;
+    float: left;
+    font-family: Arial;
+    font-size: 11px;
+    padding-left: 3px;
+    padding-top: 4px;
+}
+.comment .item .middle .email {
+    color: #999999;
+    float: left;
+    font-family: Arial;
+    font-size: 11px;
+    padding-left: 10px;
+    width: 446px;
+}
+.comment .item .middle .content {
+    color: #666666;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    padding: 8px 10px;
+    width: 436px;
+}
