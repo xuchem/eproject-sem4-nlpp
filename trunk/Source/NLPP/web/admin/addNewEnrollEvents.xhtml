@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./adminTemp.xhtml">
+
+            <ui:define name="content">
+                <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
+                    <a href="index.xhtml">Home Admin</a> >> <a href="viewEvents.xhtml">Events Manager</a> >> <a href="viewEvents.xhtml">View All Event</a> >> Add New Person Enroll Event
+                </div>
+                <div style="padding-top: 10px">
+                    <h:form prependId="false">
+                        <p:panel rendered="true">
+                            <table>
+                                <tr>
+                                    <td colspan="2" style="text-align: center;">
+                                        <b style="font-size: 32;">Input Information Person Erroll Event</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ID Event:</td>
+                                    <td>
+                                        <h:outputText value="#{eventsManager.eventsById.eventId}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Name Event:</td>
+                                    <td>
+                                        <h:outputText style="font-weight: bold;" value="#{eventsManager.eventsById.eventName}" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </p:panel>
+                        <p:panel style="padding-top: 5px;" rendered="true">
+                            <div>
+                                Check Email: <p:inputText value="#{personManager.email}" />
+                                <h:commandButton action="#{personManager.checkExistEmail}" value=" Check ">
+                                    <f:param name="id" value="#{eventsManager.eventsById.eventId}" />
+                                </h:commandButton>
+                                <br />
+                                <h:outputText value="#{personManager.msg}" />
+                            </div>
+                        </p:panel>
+                        <p:outputPanel id="panelNotExist" autoUpdate="true" rendered="#{personManager.isCheckShow}">
+                            <p:panel rendered="true">
+                                <table>
+                                    <tr>
+                                        <td>Customer Name:</td>
+                                        <td>
+                                            <p:inputText value="#{enrollEventManager.personName}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender:</td>
+                                        <td>
+                                            <p:selectOneMenu style="width: 75px;" value="#{enrollEventManager.gender}">
+                                                <f:selectItem itemLabel="Male" itemValue="Male" /> <br />
+                                                <f:selectItem itemLabel="Female" itemValue="Female" />
+                                            </p:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Birth day:</td>
+                                        <td>
+                                            <p:calendar value="#{enrollEventManager.birthday}" showOn="button" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>
+                                            <p:inputText value="#{enrollEventManager.email}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td>
+                                            <p:inputText value="#{enrollEventManager.phone}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td>
+                                            <p:inputTextarea value="#{enrollEventManager.address}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>IsPayment</td>
+                                        <td>
+                                            <p:selectOneRadio value="#{enrollEventManager.isPayment}">
+                                                <f:selectItem itemLabel="No Payment" itemValue="0" />
+                                                <f:selectItem itemLabel="Payment" itemValue="1" />
+                                            </p:selectOneRadio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <h:commandLink action="#{enrollEventManager.saveEventEnroll}">
+                                                <f:param name="id" value="#{eventsManager.eventsById.eventId}" />
+                                                <f:param name="price" value="#{eventsManager.eventsById.price}" />
+                                                <h:graphicImage url="../images/icon/addIcon.png" />
+                                            </h:commandLink>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p:panel>
+                        </p:outputPanel>
+                        <!-- Code Has Email-->
+                        <p:outputPanel id="panelExist" autoUpdate="true" rendered="#{personManager.isCheck}">
+                            <p:panel rendered="true">
+                                <table>
+                                    <tr>
+                                        <td>ID:</td>
+                                        <td>
+                                            <h:outputText value="#{personManager.person.personId}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Customer Name:</td>
+                                        <td>
+                                            <p:inputText value="#{personManager.person.personName}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender:</td>
+                                        <td>
+                                            <p:selectOneMenu style="width: 75px;" value="#{personManager.person.gender}">
+                                                <f:selectItem itemLabel="Male" itemValue="Male" /> <br />
+                                                <f:selectItem itemLabel="Female" itemValue="Female" />
+                                            </p:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Birth day:</td>
+                                        <td>
+                                            <p:calendar value="#{personManager.person.birthday}" showOn="button" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>
+                                            <p:inputText value="#{personManager.person.email}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td>
+                                            <p:inputText value="#{personManager.person.phone}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td>
+                                            <p:inputTextarea value="#{personManager.person.address}" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>IsPayment</td>
+                                        <td>
+                                            <p:selectOneRadio value="#{enrollEventManager.isPayment}">
+                                                <f:selectItem itemLabel="No Payment" itemValue="0" />
+                                                <f:selectItem itemLabel="Payment" itemValue="1" />
+                                            </p:selectOneRadio>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <h:commandLink action="#{enrollEventManager.saveEventHasAccount}">
+                                                <f:param name="perId" value="#{personManager.person.personId}" />
+                                                <f:param name="id" value="#{eventsManager.eventsById.eventId}" />
+                                                <f:param name="price" value="#{eventsManager.eventsById.price}" />
+                                                <h:graphicImage url="../images/icon/iconSave.png" />
+                                            </h:commandLink>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p:panel>
+                        </p:outputPanel>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

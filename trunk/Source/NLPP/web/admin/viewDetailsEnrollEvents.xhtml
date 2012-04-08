@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./adminTemp.xhtml">
+
+            <ui:define name="content">
+                <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
+                    <a href="index.xhtml">Home</a> >> <a href="viewEvents.xhtml">Events Manager</a> >> 
+                    View Details Events Enroll
+                </div>
+                <div style="margin-top: 10px;">
+                    <h:form prependId="false">
+                        <table border="0" width="100%">
+                            <tr>
+                                <td colspan="2" style="text-align: center;">
+                                    <b>
+                                        <h2><h:outputText value="#{enrollEventManager.enrollEventByPerson.events.eventName}" /></h2>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 115px;">
+                                    <b>Price Event:</b>
+                                </td>
+                                <td>
+                                    <b>
+                                        <h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.events.price}($)" />
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Timer Events:</b></td>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.events.timeEvent}" >
+                                        <f:convertDateTime pattern="MM/dd/yyyy hh:mm:ss" />
+                                    </h:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Timer Deadline:</b></td>
+                                <td><h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.events.deadline}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy hh:mm:ss" />
+                                    </h:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>FullName:</b>
+                                </td>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.person.personName}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Email:</b>
+                                </td>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.person.email}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Gender:</b>
+                                </td>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.person.gender}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Address:</b>
+                                </td>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.person.address}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>&clubs; &nbsp;Date Reg Event:</b>
+                                </td>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.dateReg}" >
+                                        <f:convertDateTime pattern="MM/dd/yyyy hh:mm:ss" />
+                                    </h:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Status Payment:</b>
+                                </td>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="Unpaid" rendered="#{enrollEventManager.enrollEventByPerson.isPayment == 0}" />
+                                    <h:outputText style="font-weight: bold;"  value="Paid" rendered="#{enrollEventManager.enrollEventByPerson.isPayment == 1}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="Date Payment" rendered="#{enrollEventManager.enrollEventByPerson.isPayment == 1}" />
+                                </td>
+                                <td>
+                                    <h:outputText style="font-weight: bold;" value="#{enrollEventManager.enrollEventByPerson.datePay}" rendered="#{enrollEventManager.enrollEventByPerson.isPayment == 1}" >
+                                        <f:convertDateTime pattern="MM/dd/yyyy hh:mm:ss" />
+                                    </h:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: center;">
+                                    <a style="font-weight: bold;" href="viewEnrollEvent.xhtml?id=#{enrollEventManager.enrollEventByPerson.events.eventId}">Back</a>
+                                    <h:commandLink action="#{enrollEventManager.paymentEnrollEvent}" rendered="#{enrollEventManager.enrollEventByPerson.isPayment == 0}">
+                                        <f:param name="id" value="#{enrollEventManager.enrollEventByPerson.events.eventId}" />
+                                        <f:param name="idEnroll" value="#{enrollEventManager.enrollEventByPerson.enrollEventId}" />
+                                        <h:outputText value=" |" />
+                                        <h:graphicImage style="border: 0px; width: 25px; height: 18px;" url="/images/icon/pay.png" />
+                                        <h:outputText value="payment" />
+                                    </h:commandLink>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </h:form>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
