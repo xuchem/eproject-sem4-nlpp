@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="hibernate.connection.url">jdbc:sqlserver://localhost\SQLSERVER2008:1433;databaseName=NLPP</property>
+    <property name="hibernate.connection.username">sa</property>
+    <property name="hibernate.connection.password">hung88</property>
+    <mapping resource="com/nlpp/domain/EventTypes.hbm.xml"/>
+    <mapping resource="com/nlpp/domain/Users.hbm.xml"/>
+    <mapping resource="com/nlpp/domain/EventPrizes.hbm.xml"/>
+    <mapping resource="com/nlpp/domain/EventEnrollments.hbm.xml"/>
+    <mapping resource="com/nlpp/domain/Events.hbm.xml"/>
+    <mapping resource="com/nlpp/domain/PaymentType.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
