@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2011 11:57:51 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.nlpp.domain.EnrollEvent" table="EnrollEvent" schema="dbo" catalog="NLPP">
+        <id name="enrollEventId" type="int">
+            <column name="EnrollEventID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="events" class="com.nlpp.domain.Events" fetch="select">
+            <column name="EventID" />
+        </many-to-one>
+        <many-to-one name="person" class="com.nlpp.domain.Person" fetch="select">
+            <column name="PersonID" />
+        </many-to-one>
+        <property name="isPayment" type="int">
+            <column name="IsPayment" not-null="true" />
+        </property>
+        <property name="dateReg" type="timestamp">
+            <column name="DateReg" length="23" />
+        </property>
+        <property name="datePay" type="timestamp">
+            <column name="DatePay" length="23" />
+        </property>
+        <property name="payMoney" type="big_decimal">
+            <column name="PayMoney" scale="4" />
+        </property>
+        <property name="isWin" type="int">
+            <column name="IsWin" not-null="true" />
+        </property>
+        <property name="visiable" type="int">
+            <column name="Visiable" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

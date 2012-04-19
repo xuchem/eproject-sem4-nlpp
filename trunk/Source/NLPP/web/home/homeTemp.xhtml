@@ -14,9 +14,9 @@
         <title>Home KSF University</title>
     </h:head>
 
-    <h:body style="background-color: #000">
+    <h:body style="background-color: #EEEEEE">
         <center>
-            <table style="background-color: #ffffff">
+            <table style="background-color: #eeeeee" cellpadding="0px" cellspacing="0px">
                 <tr>
                     <td colspan="2">
                         <div id="subTop">
@@ -45,8 +45,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td id="top" colspan="2">
-
+                    <td colspan="2">
+                        <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="975" height="103" id="banner" align="">
+                            <param name="movie" value="banner.swf"/>
+                            <param name="quality" value="high" />
+                            <param name="wmode" value="transparent" />
+                            <embed src="./../images/banner.swf" quality="high" wmode="transparent" width="975" height="103" name="banner" align=""
+                                   type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"> </embed>
+                        </object>
                     </td>
                 </tr>
                 <tr>
@@ -76,11 +82,11 @@
                             <div id="subLeft" style="text-align: left;padding-left: 10px; border-bottom: 1px solid #C0DAE7; width: 150px" >
                                 <b>List Category</b>
                             </div>
-                            <h:dataTable value="#{categoryManager.allCategory}" var="cat">
+                            <h:dataTable value="#{categoryManager.allCategory}" var="cat" cellpadding="0px" cellspacing="0px">
                                 <h:column>
-                                    <div style="text-align: left;padding-left: 10px; border-bottom: 1px solid #C0DAE7; width: 150px" >
-                                        <a href="events.xhtml?catId=#{cat.catId}">
-                                            <h:outputLabel value="#{cat.catName}" />
+                                    <div id="menu_left">
+                                        <a href="events.xhtml?catId=#{cat.catId}" >
+                                            <h:outputLabel value="#{cat.catName}" class="menu_link"/>
                                         </a>
                                     </div>
                                 </h:column>
@@ -92,12 +98,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td id="bottom" colspan="2">
-                        <div>
-                            Copyright © Zing, Thư điện tử: ZingNews@vng.com.vn<br />
-                            Đơn vị chủ quản: Công ty Cổ phần VNG. Điện thoại: (84 8)3866 4666 - Fax: (84 8)3832 8425<br />
-                            Địa chỉ: 268 Tô Hiến Thành, P15, Q10, tp Hồ Chí Minh<br />
-                            Giấy phép ICP số: 41/GP-TTĐT. Chịu trách nhiệm quản lý nội dung: Lê Hồng Minh<br />
+                    <td colspan="2">
+                        <div id="bottom">
+                            Copyright © 2012, C0812L - FPT Aptech (FAT3)<br />
+                            Địa chỉ: Lê Đại Hành, Q. Hai Bà Trưng, TP. Hà Nội<br />
+                            Giấy phép ICP số: 41/GP-TTĐT. Chịu trách nhiệm quản lý nội dung: Nguyễn Thế Anh<br />
                         </div>
                     </td>
                 </tr>
