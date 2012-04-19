@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./homeTemp1.xhtml">
+
+            <ui:define name="content">
+                <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
+                    <a href="index.xhtml">Home</a> >> <a href="updateProfile.xhtml">Profile</a> >> History Events Enroll
+                </div>
+                <div style="padding-top: 10px; padding-left: 10px; width: 700px;">
+                    <h:form prependId="false">
+                        <p:dataTable value="#{enrollEventManager.enrollEventsByPersonId}" var="enroll">
+                            <p:column headerText="Event Name">
+                                <h:outputText value="#{enroll.events.eventName}" />
+                            </p:column>
+                            <p:column headerText="Date Reg">
+                                <h:outputText value="#{enroll.dateReg}">
+                                    <f:convertDateTime pattern="HH:mm - dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Status Enroll">
+                                <h:outputText value="Not Pay" rendered="#{enroll.isPayment == 0}" />
+                                <h:outputText value="Pay" rendered="#{enroll.isPayment == 1}" />
+                            </p:column>
+                            <p:column headerText="Details">
+                                <a href="detailsEnrollEvent.xhtml?id=#{enroll.enrollEventId}">View</a>
+                            </p:column>
+                            <p:column headerText="Cancel">
+                                <h:commandLink value="Cancel" rendered="#{enroll.expires == true}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    <div style="text-align: center">
+                        <a href="updateProfile.xhtml">
+                            <img src="../images/icon/back-icon.png" style="width: 18px" />Back</a>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

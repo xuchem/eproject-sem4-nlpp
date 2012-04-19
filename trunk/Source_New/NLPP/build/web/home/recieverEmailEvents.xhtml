@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./homeTemp.xhtml">
+
+            <ui:define name="content">
+                <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
+                    <a href="index.xhtml">Home</a> >> Reg Riciever Email
+                </div>
+                <div style="width: 550px; padding-top: 10px;">
+                    <h1>Receive Notifications of Upcoming Events</h1>
+                    <i style="padding: 5px;">If you would like to receive notifications of upcoming events, please fill out the form. These are currently the cities we plan to do through the first half of this year. If you do not see your city listed, feel free to suggest a new city.</i>
+                    <p style="padding: 5px;">
+                        <h2>Receive Notifications for Future AdWords Seminars</h2>
+                    </p>
+                    <p:outputPanel rendered="#{sessionScope['loginH'] == null}">
+                        If you have an account, please <a href="login.xhtml">login</a>. If not, please <a href="register.xhtml">register</a> to use this function.
+                    </p:outputPanel>
+                    <h:form prependId="false">
+                        <p:messages showDetail="true" autoUpdate="true"/>
+                        <p:outputPanel  rendered="#{sessionScope['loginH'] != null}">
+                            <div style="padding: 5px;">
+                                You select the event you wish to receive mail!
+                            </div>
+                            <div style="text-align: center;">
+                                <p:selectManyCheckbox value="#{emailRecieverManager.aListCategorySelect}" layout="pageDirection">
+                                    <f:selectItems value="#{emailRecieverManager.allCategory}" />
+                                </p:selectManyCheckbox>
+                                <h:commandButton value="Subcriber" action="#{emailRecieverManager.saveEmailReciever}" />
+                            </div>
+                        </p:outputPanel>
+
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

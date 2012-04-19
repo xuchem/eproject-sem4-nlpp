@@ -1,0 +1,123 @@
+ul.BlogPostList {
+    list-style-type: none;
+    margin: 20px 0 0;
+    padding: 0;
+}
+ul.BlogPostListNews {
+    list-style-type: none;
+    margin: 0 0 0;
+    padding: 0;
+}
+.BlogPostAreaNews {
+    border-color: #EEEEEE;
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin: 0 0 20px;
+    min-height: 46px;
+    padding: 0 0 20px 0;
+    text-decoration: none;
+    list-style: none outside none;
+}
+.BlogPostArea {
+    background-image: url("../images/blogs.png");
+    background-position: left top;
+    background-repeat: no-repeat;
+    border-color: #EEEEEE;
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin: 0 0 20px;
+    min-height: 46px;
+    padding: 0 0 20px 70px;
+}
+.BlogPostArea.External {
+    background-image: url("../images/external.png");
+}
+.BlogPostArea.None {
+    background-image: none;
+    padding-left: 0;
+}
+.BlogPostHeader {
+    font-size: 140%;
+    font-weight: normal;
+    margin: 0 0 8px;
+    padding: 0;
+}
+.BlogRating {
+    background-color: #CCCCCC;
+    background-image: url("../images/Common/blog_comment_background.gif");
+    color: #666666;
+    height: 80px;
+    line-height: 20px;
+    margin: 5px 10px 0 0;
+    padding: 8px 2px 2px;
+    text-align: center;
+    vertical-align: top;
+    width: 80px;
+}
+.BlogRating a:link, .BlogRating a:visited, .BlogRating a:active, .BlogRating a:hover {
+    color: #666666;
+    text-decoration: none;
+}
+.BlogPostContent {
+    font-size: 100%;
+}
+.BlogPostFooter {
+    color: #000000;
+    font-size: 80%;
+    margin: 8px 0 0;
+}
+.BlogPostContentNews {
+    font-size: 100%;
+    text-align: justify;
+}
+.BlogPostFooterNews {
+    color: #000000;
+    font-size: 80%;
+    margin: 0 0 3px;
+}
+.BlogPostExcerptNews {
+    font-weight: bold;
+    padding-top: 8px;
+}
+.BlogBlogNameColumn {
+    width: 25%;
+}
+.BlogAuthorColumn {
+    width: 14%;
+}
+.BlogLastPostColumn {
+    width: 25%;
+}
+.BlogPostsColumn {
+    text-align: center;
+    width: 9%;
+}
+.BlogArticlesColumn {
+    text-align: center;
+    width: 9%;
+}
+.BlogCommentsColumn {
+    text-align: center;
+    width: 9%;
+}
+.BlogTrackbacksColumn {
+    text-align: center;
+    width: 9%;
+}
+ul.BlogLinkCategoryLinkList {
+    list-style-type: square;
+    margin: 0 0 0 24px;
+    padding: 0;
+}
+ul.BlogLinkCategoryLinkList li {
+    padding-top: 4px;
+}
+ul.BlogLinkCategoryLinkList li a {
+    font-weight: bold;
+}
+.BlogLinkCategoryArea {
+    padding: 4px;
+}
+.BlogSubscriptionItem {
+    margin-bottom: 3px;
+}

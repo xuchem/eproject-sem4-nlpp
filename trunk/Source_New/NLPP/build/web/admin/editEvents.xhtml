@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./adminTemp.xhtml">
+
+            <ui:define name="content">
+                <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
+                    <a href="index.xhtml">Home Admin</a> >> <a href="viewEvents.xhtml">Events Manager</a> >> <a href="viewEvents.xhtml">View All Event</a> >> Edit Events
+                </div>
+                <div style="padding-top: 10px">
+                    <h:form prependId="false">
+                        <table>
+                            <tr>
+                                <td>
+                                    Category
+                                </td>
+                                <td>
+                                    <p:selectOneMenu value="#{eventsManager.catID}" effect="drop">
+                                        <f:selectItems value="#{categoryManager.allCategory}" var="cat" itemLabel="#{cat.catName}" itemValue="#{cat.catId}"/>
+                                    </p:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Event Name:</td>
+                                <td>
+                                    <p:inputText value="#{eventsManager.eventName}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Time Events:</td>
+                                <td>
+                                    <p:calendar value="#{eventsManager.timeEvent}" pattern="MM/dd/yyyy HH:mm" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Deadline:</td>
+                                <td>
+                                    <p:calendar value="#{eventsManager.deadline}" pattern="MM/dd/yyyy HH:mm" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Images Old:
+                                </td>
+                                <td>
+                                    <h:inputHidden value="#{eventsManager.images}" />
+                                    <h:graphicImage style="border: 0px;" height="57px" width="57px" url="../images/events/#{eventsManager.images}" value="#{eventsManager.images}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Images New:
+                                </td>
+                                <td>
+                                    <p:fileUpload value="#{eventsManager.file}" mode="simple" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Price:
+                                </td>
+                                <td>
+                                    <p:inputText value="#{eventsManager.price}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Address:
+                                </td>
+                                <td>
+                                    <p:inputTextarea value="#{eventsManager.address}" style="width:300px;height:100px;" effectDuration="400" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Description:
+                                </td>
+                                <td>
+                                    <p:inputTextarea value="#{eventsManager.description}" style="width:300px;height:100px;" effectDuration="400" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Details:</td>
+                                <td>
+                                    <p:editor value="#{eventsManager.details}" widgetVar="editor" width="600"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p:commandButton action="#{eventsManager.updateEvents}" ajax="false" value=" Save Event ">
+                                        <f:param name="id" value="#{eventsManager.eventId}" />
+                                    </p:commandButton>
+                                </td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
