@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./homeTemp.xhtml">
+            <ui:define name="content">
+
+                <h:form prependId="false">
+                    <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
+                        <a href="index.xhtml">Home</a>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold; font-size: 18px; color: #08C">List Top 10 Events New</div>
+                        <p>
+                            <p:galleria value="#{eventsManager.allTop10}"
+                                        var="event" frameWidth="100" frameHeight="100"
+                                        panelWidth="700" panelHeight="500" transitionInterval="0">
+                                <p:graphicImage value="../images/events/#{event.images}" title="#{event.eventName}" />
+                                <p:galleriaContent>
+                                    <h:panelGrid  columns="1" cellpadding="5">
+                                        <f:facet name="header">
+                                            <a href="eventsDetails.xhtml?id=#{event.eventId}">
+                                                <p:graphicImage style="width: 650px; height: 400px;border: 0px;" value="../images/events/#{event.images}" />
+                                            </a>
+                                        </f:facet>
+                                        <h:outputText id="modelNo" value="#{event.eventName}"/>
+                                        <h:outputText id="year" value="#{event.timeEvent}">
+                                            <f:convertDateTime pattern="HH:mm - dd/MM/yyyy" />
+                                        </h:outputText>
+
+                                        <h:outputText value="Prices " />
+                                        <h:outputText value="#{event.price}"/>
+                                    </h:panelGrid>
+                                </p:galleriaContent>
+                            </p:galleria>
+                        </p>
+                    </div>
+                    <hr />
+                    <div style="width: 700px; padding-top: 10px;">
+                        <div>
+                            <div style="font-weight: bold; font-size: 18px; color: #08C">Video Interviews &amp; Testimonials</div>
+                            <p style="text-align: center;"> &nbsp;<br />
+                                <object style="padding-left: 60px;" height="349px" width="630px">
+                                    <param value="http://www.youtube.com/cp/vjVQa1PpcFPoTwh-hDN8Yi-mJdlHc7XNc-HWAGGq-Ug=" name="movie" />
+                                    <embed height="349px" width="630px" type="application/x-shockwave-flash" src="http://www.youtube.com/cp/vjVQa1PpcFPoTwh-hDN8Yi-mJdlHc7XNc-HWAGGq-Ug=" />
+                                </object>
+                            </p>
+                        </div>
+                    </div>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

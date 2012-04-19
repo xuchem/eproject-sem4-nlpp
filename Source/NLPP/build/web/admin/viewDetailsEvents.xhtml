@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./adminTemp.xhtml">
+
+            <ui:define name="content">
+                <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
+                    <a href="index.xhtml">Home Admin</a> >> <a href="viewEvents.xhtml">Events Manager</a> >> <a href="viewEvents.xhtml">View All Event</a> >> View Details Events
+                </div>
+                <div style="padding-top: 10px">
+                    <h:form enctype="" prependId="false">
+                        <table width="685px">
+                            <tr>
+                                <td>
+                                    <h:outputText style="font-weight: bold; font-size: 24px;" value="#{eventsManager.eventsById.eventName}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i>Timer: </i><h:outputText style="font-style: italic" value="#{eventsManager.eventsById.dateCreate}">
+                                        <f:convertDateTime pattern="HH:mm - dd/MM/yyyy" />
+                                    </h:outputText>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputText style="font-style: italic" value="Address: #{eventsManager.eventsById.address}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>
+                                        <h:outputText style="font-style: italic; font-weight: bold;" value="#{eventsManager.eventsById.description}" />
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="padding-top: 10px">
+                                        <h:outputText escape="false" value="#{eventsManager.eventsById.details}" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <center>
+                            <div style="padding-top: 10px;">
+                                <a href="viewEvents.xhtml">
+                                    <img src="../images/icon/back-icon.png" style="width: 18px" />Back</a> |
+                                    <a href="addNewEnrollEvents.xhtml?id=#{eventsManager.eventsById.eventId}">
+                                        <img src="../images/icon/addEnrollEventIcon.jpg" style="width: 18px" />
+                                        New Enroll</a>
+                            </div>
+                        </center>
+                    </h:form>
+                </div>
+                <div style="text-align: center; padding: 10px;">
+                    <a href="index.xhtml" title="Back Index">
+                        <img src="../images/icon/icon_home.png" />
+                    </a>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
