@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 18, 2012 9:57:49 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="NLPP" name="com.nlpp.entity.EventPrizes" schema="dbo" table="EventPrizes">
+    <id name="eventPrizeId" type="int">
+      <column name="EventPrizeID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.nlpp.entity.Events" fetch="select" name="events">
+      <column name="EventID" not-null="true"/>
+    </many-to-one>
+    <property name="prizeDetail" type="serializable">
+      <column name="PrizeDetail"/>
+    </property>
+    <property name="winners" type="serializable">
+      <column name="Winners"/>
+    </property>
+  </class>
+</hibernate-mapping>

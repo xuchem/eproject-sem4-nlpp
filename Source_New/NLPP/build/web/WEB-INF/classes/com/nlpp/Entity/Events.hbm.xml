@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 18, 2012 9:57:49 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="NLPP" name="com.nlpp.entity.Events" schema="dbo" table="Events">
+    <id name="eventId" type="int">
+      <column name="EventID"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.nlpp.entity.EventTypes" fetch="select" name="eventTypes">
+      <column name="EventType" not-null="true"/>
+    </many-to-one>
+    <property name="eventName" type="string">
+      <column length="100" name="EventName" not-null="true"/>
+    </property>
+    <property name="topic" type="serializable">
+      <column name="Topic" not-null="true"/>
+    </property>
+    <property name="speakers" type="serializable">
+      <column name="Speakers"/>
+    </property>
+    <property name="guests" type="serializable">
+      <column name="Guests"/>
+    </property>
+    <property name="criteria" type="serializable">
+      <column name="Criteria"/>
+    </property>
+    <property name="termsAndConditions" type="serializable">
+      <column name="TermsAndConditions"/>
+    </property>
+    <property name="location" type="serializable">
+      <column name="Location" not-null="true"/>
+    </property>
+    <property name="conductingDate" type="date">
+      <column length="10" name="ConductingDate" not-null="true"/>
+    </property>
+    <property name="fees" type="java.lang.Double">
+      <column name="Fees" precision="53" scale="0"/>
+    </property>
+    <property name="numberOfParticipants" type="int">
+      <column name="NumberOfParticipants" not-null="true"/>
+    </property>
+    <set inverse="true" name="eventPrizeses">
+      <key>
+        <column name="EventID" not-null="true"/>
+      </key>
+      <one-to-many class="com.nlpp.entity.EventPrizes"/>
+    </set>
+    <set inverse="true" name="eventEnrollmentses">
+      <key>
+        <column name="EventID" not-null="true"/>
+      </key>
+      <one-to-many class="com.nlpp.entity.EventEnrollments"/>
+    </set>
+  </class>
+</hibernate-mapping>

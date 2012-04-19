@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./homeTemp.xhtml">
+
+            <ui:define name="content">
+                <h:form prependId="false">
+                    <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
+                        <a href="index.xhtml">Home</a> >> View All Events
+                    </div>
+                    <div style="padding-top: 10px;">
+                        <h:dataTable style="width: 680px;" value="#{eventsManager.allEvent}" var="evt">
+                            <h:column>
+                                <li class="BlogPostAreaNews">
+                                    <h6 class="BlogPostHeader"><a href="eventsDetails.xhtml?id=#{evt.eventId}"><h:outputText value="#{evt.eventName}" /></a></h6>
+                                    <div class="BlogPostFooterNews">
+                                        <div>
+                                            <div style="width: 102px; height: 80px; border: 1px solid rgb(229, 155, 22); float: left; overflow: hidden; margin-right: 10px;">
+                                                <img height="76" width="98" style="margin-left: 2px; margin-top: 2px;" src="../images/events/#{evt.images}" />
+                                            </div>
+                                            <div style="color: #666666">
+                                                Update: <h:outputText value="#{evt.dateCreate}" />
+                                                In Category <a href="events.xhtml?id=#{evt.category.catId}"><h:outputText value="#{evt.category.catName}" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="BlogPostContentNews">
+                                        <h:outputText style="font-family: Arial,Tahoma,Verdana,sans-serif; color: #000000;" value="#{evt.description}" />
+                                    </div>
+                                    <p style="text-align: right; font-size: 80%; padding-right: 20px;">
+                                        <a href="eventsDetails.xhtml?id=#{evt.eventId}">details »</a>
+                                    </p>
+                                </li>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>
