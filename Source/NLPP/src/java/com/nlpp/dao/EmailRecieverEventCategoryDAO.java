@@ -31,7 +31,7 @@ public class EmailRecieverEventCategoryDAO extends HibernateDaoSupport implement
     }
     public List<EmailRecieverEventCategory> findByPersonId(int  perId) {
         List<EmailRecieverEventCategory> aListEmailR = new ArrayList<EmailRecieverEventCategory>();
-        aListEmailR = getHibernateTemplate().find("from EmailRecieverEventCategory where PersonId = ?", perId);
+        aListEmailR = getHibernateTemplate().find("from EmailRecieverEventCategory where UserId = ?", perId);
         for (Iterator<EmailRecieverEventCategory> it = aListEmailR.iterator(); it.hasNext();) {
             EmailRecieverEventCategory emailRecieverEventCategory = it.next();
             HibernateUtils.initialize(emailRecieverEventCategory.getCategory());
@@ -69,7 +69,7 @@ public class EmailRecieverEventCategoryDAO extends HibernateDaoSupport implement
         try {
             if(aList.size() >= 1) {
                 EmailRecieverEventCategory ec = aList.get(0);
-                List<EmailRecieverEventCategory> aListRemove = getHibernateTemplate().find("from EmailRecieverEventCategory where PersonId = ?", ec.getPerson().getPersonId());
+                List<EmailRecieverEventCategory> aListRemove = getHibernateTemplate().find("from EmailRecieverEventCategory where UserId = ?", ec.getPerson().getPersonId());
                 getHibernateTemplate().deleteAll(aListRemove);
             }
             getHibernateTemplate().saveOrUpdateAll(aList);

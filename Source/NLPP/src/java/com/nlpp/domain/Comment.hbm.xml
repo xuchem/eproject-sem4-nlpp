@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 5, 2011 11:57:51 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="com.nlpp.domain.Comment" table="Comment" schema="dbo" catalog="NLPP">
+    <class name="com.nlpp.domain.Comment" table="Comments" schema="dbo" catalog="NLPP">
         <id name="commentId" type="int">
             <column name="CommentID" />
             <generator class="identity" />
@@ -12,16 +12,16 @@
             <column name="EventID" />
         </many-to-one>
         <many-to-one name="person" class="com.nlpp.domain.Person" fetch="select">
-            <column name="PersonID" />
+            <column name="UserID" />
         </many-to-one>
         <property name="dateComment" type="timestamp">
-            <column name="DateComment" length="23" not-null="true" />
+            <column name="CreatedDate" length="23" not-null="true" />
         </property>
         <property name="contents" type="string">
             <column name="Contents" not-null="true" />
         </property>
         <property name="visiable" type="int">
-            <column name="Visiable" not-null="true" />
+            <column name="Status" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

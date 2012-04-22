@@ -16,7 +16,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class CategoryDAO extends HibernateDaoSupport implements IObjectDAO<Category>{
 
     public List<Category> findAll() {
-        return getHibernateTemplate().find("from Category where Visiable = 0");
+        return getHibernateTemplate().find("from Category where Status = 0");
     }
 
     public Category findById(int id) {
@@ -28,7 +28,7 @@ public class CategoryDAO extends HibernateDaoSupport implements IObjectDAO<Categ
     }
 
     public List<Category> findByName(String name) {
-       return getHibernateTemplate().find("from Category where CatName like ? and Visiable = 0",  "%"+ name + "%");
+       return getHibernateTemplate().find("from Category where CatName like ? and Status = 0",  "%"+ name + "%");
     }
     boolean flag = true;
     public boolean saveObject(Category t) {
@@ -70,7 +70,7 @@ public class CategoryDAO extends HibernateDaoSupport implements IObjectDAO<Categ
     }
 
     public int count() {
-        return getHibernateTemplate().find("from Category where Visiable = 0").size();
+        return getHibernateTemplate().find("from Category where Status = 0").size();
     }
 
 }

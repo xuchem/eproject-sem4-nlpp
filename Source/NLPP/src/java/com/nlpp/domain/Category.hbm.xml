@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 5, 2011 11:57:51 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="com.nlpp.domain.Category" table="Category" schema="dbo" catalog="NLPP">
+    <class name="com.nlpp.domain.Category" table="Categories" schema="dbo" catalog="NLPP">
         <id name="catId" type="int">
             <column name="CatID" />
             <generator class="identity" />
@@ -12,7 +12,7 @@
             <column name="CatName" length="50" not-null="true" />
         </property>
         <property name="visiable" type="int">
-            <column name="Visiable" not-null="true" />
+            <column name="Status" not-null="true" />
         </property>
         <set name="eventses" inverse="true">
             <key>

@@ -18,15 +18,15 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class PersonDAO extends HibernateDaoSupport implements IObjectDAO<Person>{
     private boolean  flag = true;
     public List<Person> findAll() {
-        return getHibernateTemplate().find("from Person where Visiable = 0");
+        return getHibernateTemplate().find("from Person where Status = 0");
     }
 
     public List<Person> findAllByRoles(int roles) {
-        return getHibernateTemplate().find("from Person where Roles = ? and Visiable = 0", roles);
+        return getHibernateTemplate().find("from Person where Roles = ? and Status = 0", roles);
     }
 
     public List<Person> findAllEmployee() {
-        return getHibernateTemplate().find("from Person where Roles <> 0 and Visiable = 0");
+        return getHibernateTemplate().find("from Person where Roles <> 0 and Status = 0");
     }
 
     public Person findById(int id) {
@@ -34,10 +34,10 @@ public class PersonDAO extends HibernateDaoSupport implements IObjectDAO<Person>
     }
 
     public List<Person> findByName(String name) {
-        return getHibernateTemplate().find("from Person where PersonName like ? and Visiable = 0","%" + name + "%");
+        return getHibernateTemplate().find("from Person where FullName like ? and Status = 0","%" + name + "%");
     }
     public Person findByEmail(String email) {
-        List<Person> lPerson = getHibernateTemplate().find("from Person where Email = ? and Visiable = 0",email);
+        List<Person> lPerson = getHibernateTemplate().find("from Person where Email = ? and Status = 0",email);
         Person p = null;
         if (lPerson.size() > 0) {
             p = new Person();
@@ -47,7 +47,7 @@ public class PersonDAO extends HibernateDaoSupport implements IObjectDAO<Person>
     }
     
     public Person checkLogin(String email, String password) {
-        List<Person> lPerson = getHibernateTemplate().find("from Person where Email = ? and Password = ? and Visiable = 0", email, password);
+        List<Person> lPerson = getHibernateTemplate().find("from Person where Email = ? and Password = ? and Status = 0", email, password);
         System.out.println("LPerson:" + lPerson.size());
         Person p = null;
         if (lPerson.size() >= 1) {
@@ -154,7 +154,7 @@ public class PersonDAO extends HibernateDaoSupport implements IObjectDAO<Person>
 
     public List<PersonChart> getAllPersonChart() {
         List<PersonChart> aListChart = new ArrayList<PersonChart>();
-        List<Person> aListPerson = getHibernateTemplate().find("from Person where Visiable = 0");
+        List<Person> aListPerson = getHibernateTemplate().find("from Person where Status = 0");
         if(aListPerson.size() >= 1) {
             for (int i= 1; i <= 12; i++) {
                 int count = 0;
