@@ -3,16 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 5, 2011 11:57:51 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="com.nlpp.domain.EmailRecieverEventCategory" table="EmailRecieverEventCategory" schema="dbo" catalog="NLPP">
+    <class name="com.nlpp.domain.EmailRecieverEventCategory" table="EventNotifications" schema="dbo" catalog="NLPP">
         <id name="erecid" type="int">
-            <column name="ERECID" />
+            <column name="EvenNotificationID" />
             <generator class="identity" />
         </id>
         <many-to-one name="category" class="com.nlpp.domain.Category" fetch="select">
             <column name="CatID" />
         </many-to-one>
         <many-to-one name="person" class="com.nlpp.domain.Person" fetch="select">
-            <column name="PersonID" />
+            <column name="UserID" />
         </many-to-one>
     </class>
 </hibernate-mapping>

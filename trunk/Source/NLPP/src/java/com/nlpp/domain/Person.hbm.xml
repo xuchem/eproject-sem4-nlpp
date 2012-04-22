@@ -3,13 +3,13 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 5, 2011 11:57:51 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="com.nlpp.domain.Person" table="Person" schema="dbo" catalog="NLPP">
+    <class name="com.nlpp.domain.Person" table="Users" schema="dbo" catalog="NLPP">
         <id name="personId" type="int">
-            <column name="PersonID" />
+            <column name="UserID" />
             <generator class="identity" />
         </id>
         <property name="personName" type="string">
-            <column name="PersonName" length="50" not-null="true" />
+            <column name="FullName" length="50" not-null="true" />
         </property>
         <property name="email" type="string">
             <column name="Email" length="50" not-null="true" />
@@ -33,29 +33,29 @@
             <column name="Address" length="256" not-null="true" />
         </property>
         <property name="dateCreate" type="timestamp">
-            <column name="DateCreate" length="23" not-null="true" />
+            <column name="CreatedDate" length="23" not-null="true" />
         </property>
         <property name="roles" type="int">
             <column name="Roles" not-null="true" />
         </property>
         <property name="visiable" type="int">
-            <column name="Visiable" not-null="true" />
+            <column name="Status" not-null="true" />
         </property>
         <set name="enrollEvents" inverse="true">
             <key>
-                <column name="PersonID" />
+                <column name="UserID" />
             </key>
             <one-to-many class="com.nlpp.domain.EnrollEvent" />
         </set>
         <set name="comments" inverse="true">
             <key>
-                <column name="PersonID" />
+                <column name="UserID" />
             </key>
             <one-to-many class="com.nlpp.domain.Comment" />
         </set>
         <set name="emailRecieverEventCategories" inverse="true">
             <key>
-                <column name="PersonID" />
+                <column name="UserID" />
             </key>
             <one-to-many class="com.nlpp.domain.EmailRecieverEventCategory" />
         </set>

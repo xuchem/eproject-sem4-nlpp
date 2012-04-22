@@ -2,10 +2,10 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="NLPP" match-schema="dbo"/>
-  <table-filter match-name="EnrollEvent"/>
+  <table-filter match-name="EnrollEvents"/>
   <table-filter match-name="Events"/>
-  <table-filter match-name="Comment"/>
-  <table-filter match-name="Person"/>
-  <table-filter match-name="Category"/>
-  <table-filter match-name="EmailRecieverEventCategory"/>
+  <table-filter match-name="Comments"/>
+  <table-filter match-name="Users"/>
+  <table-filter match-name="Categories"/>
+  <table-filter match-name="EventNotifications"/>
 </hibernate-reverse-engineering>

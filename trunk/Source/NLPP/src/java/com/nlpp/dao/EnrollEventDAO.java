@@ -24,7 +24,7 @@ public class EnrollEventDAO extends HibernateDaoSupport implements IObjectDAO<En
     }
 
     public List<EnrollEvent> findAll(int evtID) {
-        return getHibernateTemplate().find("from EnrollEvent where EventID=? and Visiable = 0", evtID);
+        return getHibernateTemplate().find("from EnrollEvent where EventID=? and Status = 0", evtID);
     }
 
     public EnrollEvent findById(int id) {
@@ -97,7 +97,7 @@ public class EnrollEventDAO extends HibernateDaoSupport implements IObjectDAO<En
 
     public EnrollEvent getEnrollEventByPerson(int personId) {
         List<EnrollEvent> aList = new ArrayList<EnrollEvent>();
-        aList = getHibernateTemplate().find("from EnrollEvent where PersonId=? and Visiable = 0", personId);
+        aList = getHibernateTemplate().find("from EnrollEvent where UserId=? and Status = 0", personId);
         EnrollEvent enroll = null;
         if (aList.size() >= 1) {
             enroll = aList.get(0);
@@ -109,7 +109,7 @@ public class EnrollEventDAO extends HibernateDaoSupport implements IObjectDAO<En
 
     public List<EnrollEvent> getEnrollEventsByPersonId(int perId) {
         List<EnrollEvent> aList = new ArrayList<EnrollEvent>();
-        aList = getHibernateTemplate().find("from EnrollEvent where PersonId=? and Visiable = 0", perId);
+        aList = getHibernateTemplate().find("from EnrollEvent where UserId=? and Status = 0", perId);
         for (Iterator<EnrollEvent> it = aList.iterator(); it.hasNext();) {
             EnrollEvent enrollEvent = it.next();
             HibernateUtils.initialize(enrollEvent.getEvents());
@@ -131,7 +131,7 @@ public class EnrollEventDAO extends HibernateDaoSupport implements IObjectDAO<En
 
     public EnrollEvent findByPersonEventId(int perId, int evtId) {
         EnrollEvent e = new EnrollEvent();
-        List<EnrollEvent> aListEnroll = getHibernateTemplate().find("from EnrollEvent where PersonId=? and EventId =? and Visiable = 0", perId, evtId);
+        List<EnrollEvent> aListEnroll = getHibernateTemplate().find("from EnrollEvent where UserId=? and EventId =? and Status = 0", perId, evtId);
         if (aListEnroll.size() >= 1) {
             e = aListEnroll.get(0);
             HibernateUtils.initialize(e.getPerson());
@@ -145,7 +145,7 @@ public class EnrollEventDAO extends HibernateDaoSupport implements IObjectDAO<En
     }
 
     public List<EnrollEvent> findTop10() {
-        List<EnrollEvent> aListEnroll = getHibernateTemplate().find("from EnrollEvent where Visiable = 0 order by desc");
+        List<EnrollEvent> aListEnroll = getHibernateTemplate().find("from EnrollEvent where Status = 0 order by desc");
         for (Iterator<EnrollEvent> it = aListEnroll.iterator(); it.hasNext();) {
             EnrollEvent enrollEvent = it.next();
             HibernateUtils.initialize(enrollEvent.getEvents());

@@ -25,7 +25,7 @@ public class EventsDAO extends HibernateDaoSupport implements IObjectDAO<Events>
     private boolean flag = false;
 
     public List<Events> findAll() {
-        List<Events> lEvents = getHibernateTemplate().find("from Events where Visiable = 0 order by EventId desc");
+        List<Events> lEvents = getHibernateTemplate().find("from Events where Status = 0 order by EventId desc");
         for (Iterator<Events> it = lEvents.iterator(); it.hasNext();) {
             Events events = it.next();
             HibernateUtils.initialize(events.getCategory());
@@ -34,7 +34,7 @@ public class EventsDAO extends HibernateDaoSupport implements IObjectDAO<Events>
     }
 
     public List<Events> findAll(int catId) {
-        List<Events> lEvents = getHibernateTemplate().find("from Events where Visiable = 0 and CatID=? order by EventId desc", catId);
+        List<Events> lEvents = getHibernateTemplate().find("from Events where Status = 0 and CatID=? order by EventId desc", catId);
         for (Iterator<Events> it = lEvents.iterator(); it.hasNext();) {
             Events events = it.next();
             HibernateUtils.initialize(events.getCategory());
@@ -43,7 +43,7 @@ public class EventsDAO extends HibernateDaoSupport implements IObjectDAO<Events>
     }
 
     public List<Events> findAllTop10() {
-        List<Events> lEvents = getHibernateTemplate().find("from Events  where Visiable = 0 order by EventId desc");
+        List<Events> lEvents = getHibernateTemplate().find("from Events  where Status = 0 order by EventId desc");
         for (Iterator<Events> it = lEvents.iterator(); it.hasNext();) {
             Events events = it.next();
             HibernateUtils.initialize(events.getCategory());

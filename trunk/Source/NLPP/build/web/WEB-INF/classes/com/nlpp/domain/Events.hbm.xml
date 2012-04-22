@@ -15,13 +15,13 @@
             <column name="EventName" length="256" not-null="true" />
         </property>
         <property name="dateCreate" type="timestamp">
-            <column name="DateCreate" length="23" not-null="true" />
+            <column name="CreatedDate" length="23" not-null="true" />
         </property>
         <property name="timeEvent" type="timestamp">
-            <column name="TimeEvent" length="23" not-null="true" />
+            <column name="ConductingDate" length="23" not-null="true" />
         </property>
         <property name="deadline" type="timestamp">
-            <column name="Deadline" length="23" not-null="true" />
+            <column name="EnrollmentDeadline" length="23" not-null="true" />
         </property>
         <property name="address" type="string">
             <column name="Address" length="256" />
@@ -39,10 +39,10 @@
             <column name="Price" precision="53" scale="0" not-null="true" />
         </property>
         <property name="countView" type="int">
-            <column name="CountView" not-null="true" />
+            <column name="NumbOfView" not-null="true" />
         </property>
         <property name="visiable" type="int">
-            <column name="Visiable" not-null="true" />
+            <column name="Status" not-null="true" />
         </property>
         <set name="enrollEvents" inverse="true">
             <key>
