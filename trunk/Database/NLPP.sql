@@ -1,94 +1,94 @@
-use master
-go
-drop database NLPP
-go
+USE MASTER
+GO
+DROP DATABASE NLPP
+GO
 
-create database NLPP
-go
-use NLPP
-go
-create table Category
+CREATE DATABASE NLPP
+GO
+USE NLPP
+GO
+CREATE TABLE [Categories]
 (
-	CatID int identity(1,1) primary key,
-	CatName varchar(50) not null,
-	Visiable int default(0) not null
+	[CatID]				INT IDENTITY(1,1) PRIMARY KEY,
+	[CatName]			VARCHAR(50) NOT NULL,
+	[Status]			INT DEFAULT(0) NOT NULL
 )
-go
-create table Events
+GO
+CREATE TABLE [Events]
 (
-	EventID int identity(1,1) primary key,
-	CatID int references Category(CatID),
-	EventName varchar(256) not null,
-	DateCreate datetime not null,
-	Address varchar(400) null,
-	TimeEvent datetime not null,
-	Deadline datetime not null,
-	images varchar(256) not null,
-	Description varchar(1000) not null,
-	Details text not null,
-	Price float not null,
-	CountView int default(0) not null,
-	Visiable int default(0) not null
+	[EventID]			INT IDENTITY(1,1) PRIMARY KEY,
+	[CatID]				INT REFERENCES [Categories]([CatID]),
+	[EventName]			VARCHAR(256) NOT NULL,
+	[CreatedDate]		DATETIME NOT NULL,
+	[Address]			VARCHAR(400) null,
+	[ConductingDate]	DATETIME NOT NULL,
+	[EnrollmentDeadline]DATETIME NOT NULL,
+	[images]			VARCHAR(256) NOT NULL,
+	[Description]		VARCHAR(1000) NOT NULL,
+	[Details]			TEXT NOT NULL,
+	[Price]				FLOAT NOT NULL,
+	[NumbOfView]		INT DEFAULT(0) NOT NULL,
+	[Status]			INT DEFAULT(0) NOT NULL
 )
-go
-create table Person
+GO
+CREATE TABLE [Users]
 (
-	PersonID int identity(1,1) primary key,
-	PersonName varchar(50) not null,
-	Email varchar(50) not null,
-	Password varchar(50) not null,
-	Phone varchar(20),
-	Gender varchar(15) not null,
-	Images varchar(256) null,
-	Birthday datetime not null,
-	Address varchar(256) not null,
-	DateCreate datetime not null,
-	Roles int default(0) not null,
-	Visiable int default(0) not null
+	[UserID]			INT IDENTITY(1,1) PRIMARY KEY,
+	[FullName]			VARCHAR(50) NOT NULL,
+	[Email]				VARCHAR(50) NOT NULL,
+	[Password]			VARCHAR(50) NOT NULL,
+	[Phone]				VARCHAR(20),
+	[Gender]			VARCHAR(15) NOT NULL,
+	[Images]			VARCHAR(256) null,
+	[Birthday]			DATETIME NOT NULL,
+	[Address]			VARCHAR(256) NOT NULL,
+	[CreatedDate]		DATETIME NOT NULL,
+	[Roles]				INT DEFAULT(0) NOT NULL,
+	[Status]			INT DEFAULT(0) NOT NULL
 )
-go
-create table EnrollEvent
+GO
+CREATE TABLE [EnrollEvents]
 (
-	EnrollEventID int identity(1,1) primary key,
-	EventID int references Events(EventID),
-	PersonID int references Person(PersonID),
-	IsPayment int default(0) not null,
-	DateReg datetime null,
-	DatePay datetime null,
-	PayMoney money null,
-	IsWin int default(0) not null,
-	Visiable int default(0) not null
+	[EnrollEventID]		INT IDENTITY(1,1) PRIMARY KEY,
+	[EventID]			INT REFERENCES [Events]([EventID]),
+	[UserID]			INT REFERENCES [Users]([UserID]),
+	[IsPaid]			INT DEFAULT(0) NOT NULL,
+	[RegisterDate]		DATETIME,
+	[PaidDate]			DATETIME,
+	[PayMoney]			MONEY,
+	[IsWin]				INT DEFAULT(0) NOT NULL,
+	[Status]			INT DEFAULT(0) NOT NULL
 )
-go
-create table Comment
+GO
+CREATE TABLE [Comments]
 (
-	CommentID int identity(1,1) primary key,
-	PersonID int references Person(PersonID),
-	EventID int references Events(EventID),
-	DateComment datetime not null,
-	Contents varchar(max) not null,
-	Visiable int default(0) not null
+	[CommentID]			INT IDENTITY(1,1) PRIMARY KEY,
+	[UserID]			INT REFERENCES [Users]([UserID]),
+	[EventID]			INT REFERENCES [Events]([EventID]),
+	[CreatedDate]		DATETIME NOT NULL,
+	[Contents]			VARCHAR(MAX) NOT NULL,
+	[Status]			INT DEFAULT(0) NOT NULL
 )
-go
-create table EmailRecieverEventCategory
+GO
+CREATE TABLE [EventNotifications]
 (
-	ERECID int identity(1,1) not null primary key,
-	PersonID int references Person(PersonID),
-	CatID int references Category(CatID)
+	[EvenNotificationID]INT IDENTITY(1,1) PRIMARY KEY,
+	[UserID]			INT REFERENCES [Users]([UserID]),
+	[CatID]				INT REFERENCES [Categories]([CatID])
 )
-go
-INSERT INTO [NLPP].[dbo].[Person]
-           ([PersonName]
+GO
+INSERT INTO [NLPP].[dbo].[Users]
+           ([FullName]
            ,[Email]
            ,[Password]
            ,[Phone]
            ,[Gender]
            ,[Birthday]
            ,[Address]
-           ,[DateCreate]
+           ,[CreatedDate]
            ,[Images]
            ,[Roles]
-           ,[Visiable])
+           ,[Status])
      VALUES
            ('Administrator'
            ,'admin@ksc.com'
@@ -101,19 +101,19 @@ INSERT INTO [NLPP].[dbo].[Person]
            ,NULL
            ,1
            ,0)
-go
-INSERT INTO [NLPP].[dbo].[Person]
-           ([PersonName]
+GO
+INSERT INTO [NLPP].[dbo].[Users]
+           ([FullName]
            ,[Email]
            ,[Password]
            ,[Phone]
            ,[Gender]
            ,[Birthday]
            ,[Address]
-           ,[DateCreate]
+           ,[CreatedDate]
            ,[Images]
            ,[Roles]
-           ,[Visiable])
+           ,[Status])
      VALUES
            ('User1'
            ,'user1@ksc.com'
@@ -126,19 +126,19 @@ INSERT INTO [NLPP].[dbo].[Person]
            ,NULL
            ,0
            ,0)
-go
-INSERT INTO [NLPP].[dbo].[Person]
-           ([PersonName]
+GO
+INSERT INTO [NLPP].[dbo].[Users]
+           ([FullName]
            ,[Email]
            ,[Password]
            ,[Phone]
            ,[Gender]
            ,[Birthday]
            ,[Address]
-           ,[DateCreate]
+           ,[CreatedDate]
            ,[Images]
            ,[Roles]
-           ,[Visiable])
+           ,[Status])
      VALUES
            ('Accountant'
            ,'accountant@ksc.com'
@@ -151,19 +151,19 @@ INSERT INTO [NLPP].[dbo].[Person]
            ,NULL
            ,2
            ,0)
-go
-INSERT INTO [NLPP].[dbo].[Person]
-           ([PersonName]
+GO
+INSERT INTO [NLPP].[dbo].[Users]
+           ([FullName]
            ,[Email]
            ,[Password]
            ,[Phone]
            ,[Gender]
            ,[Birthday]
            ,[Address]
-           ,[DateCreate]
+           ,[CreatedDate]
            ,[Images]
            ,[Roles]
-           ,[Visiable])
+           ,[Status])
      VALUES
            ('User2'
            ,'user2@ksc.com'
@@ -176,19 +176,19 @@ INSERT INTO [NLPP].[dbo].[Person]
            ,NULL
            ,0
            ,0)
-go
-INSERT INTO [NLPP].[dbo].[Person]
-           ([PersonName]
+GO
+INSERT INTO [NLPP].[dbo].[Users]
+           ([FullName]
            ,[Email]
            ,[Password]
            ,[Phone]
            ,[Gender]
            ,[Birthday]
            ,[Address]
-           ,[DateCreate]
+           ,[CreatedDate]
            ,[Images]
            ,[Roles]
-           ,[Visiable])
+           ,[Status])
      VALUES
            ('Manager'
            ,'manager@ksc.com'
@@ -201,3 +201,5 @@ INSERT INTO [NLPP].[dbo].[Person]
            ,NULL
            ,1
            ,0)
+           
+    
