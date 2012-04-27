@@ -13,11 +13,12 @@
             <ui:define name="content">
                 <div style="border-bottom: 1px solid #C0DAE7; width: 100%">
                     <a href="index.xhtml">Home Admin</a> >> <a href="viewEmployee.xhtml">Person Manager</a> >> 
-                    <a href="viewEmployee.xhtml"> View All Employee</a> >> Add New Employee
+                    <a href="viewEmployee.xhtml"> View All Employee</a> >> Add New Employee                    
                 </div>
                 <div style="padding-top: 10px">
                     <!--Content web -->
                     <h:form prependId="false">
+                        <p style="color:red;">${error}</p>
                         <h2>Input Information Of Employees</h2>
                         <table>
                             <tr>
