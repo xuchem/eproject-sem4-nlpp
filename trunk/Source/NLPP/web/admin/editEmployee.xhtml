@@ -35,7 +35,7 @@
                             <tr>
                                 <td>Password:</td>
                                 <td>
-                                    <h:inputText value="#{personManager.password}" />
+                                    <h:inputHidden value="#{personManager.password}" />
                                     <p:password value="#{personManager.passwordConfirm}" />
                                 </td>
                             </tr>
@@ -79,7 +79,7 @@
                                 <td></td>
                                 <td>
                                     <h:commandLink action="#{personManager.updatePerson}">
-                                        <h:graphicImage url="../images/icon/addIcon.png" />
+                                        <h:graphicImage url="../images/icon/iconSave.png" />
                                     </h:commandLink>
                                 </td>
                             </tr>
