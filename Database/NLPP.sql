@@ -27,7 +27,7 @@ CREATE TABLE [Events]
 	[Description]		VARCHAR(1000) NOT NULL,
 	[Details]			TEXT NOT NULL,
 	[Price]				FLOAT NOT NULL,
-	[NumbOfView]		BIT DEFAULT(0) NOT NULL,
+	[NumbOfView]		INT DEFAULT(0) NOT NULL,
 	[Status]			BIT DEFAULT(0) NOT NULL
 )
 GO
