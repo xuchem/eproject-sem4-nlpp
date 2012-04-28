@@ -355,7 +355,7 @@ public class EventsManager extends Events {
                 int count = 0;
                 for (int j = 0; j < aListEvtChat.size(); j++) {
                     Events p = aListEvtChat.get(j);
-                    if (p.getDateCreate().getMonth() == i) {
+                    if (p.getDateCreate().getMonth() == i-1) {
                         count++;
                     }
                 }

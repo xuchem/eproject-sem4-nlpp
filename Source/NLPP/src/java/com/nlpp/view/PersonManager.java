@@ -32,7 +32,7 @@ import org.primefaces.model.chart.ChartSeries;
  * @author SVN - Team
  */
 public class PersonManager extends Person {
-    
+
     private String passwordConfirm;
     private String passwordOld;
     private boolean isCheck = false;
@@ -45,57 +45,57 @@ public class PersonManager extends Person {
     public PersonManager() {
     }
     private PersonBO managerPerson;
-    
+
     public PersonBO getManagerPerson() {
         return managerPerson;
     }
     private Person selectPerson;
-    
+
     public Person getSelectPerson() {
         return selectPerson;
     }
     private String msg;
-    
+
     public String getMsg() {
         return msg;
     }
-    
+
     public void setMsg(String msg) {
         this.msg = msg;
     }
-    
+
     public boolean isIsCheckShow() {
         return isCheckShow;
     }
-    
+
     public void setIsCheckShow(boolean isCheckShow) {
         this.isCheckShow = isCheckShow;
     }
-    
+
     public boolean isIsCheck() {
         return isCheck;
     }
-    
+
     public void setIsCheck(boolean isCheck) {
         this.isCheck = isCheck;
     }
-    
+
     public Person getPerson() {
         return person;
     }
-    
+
     public void setPerson(Person person) {
         this.person = person;
     }
-    
+
     public String getPasswordOld() {
         return passwordOld;
     }
-    
+
     public void setPasswordOld(String passwordOld) {
         this.passwordOld = passwordOld;
     }
-    
+
     public boolean isShow() {
         System.out.println("Count: " + count);
         if (count % 2 == 0) {
@@ -108,28 +108,28 @@ public class PersonManager extends Person {
         System.out.println("Count: " + count);
         return show;
     }
-    
+
     public void setShow(boolean show) {
         this.show = show;
     }
-    
+
     public void setSelectPerson(Person selectPerson) {
         this.selectPerson = selectPerson;
     }
-    
+
     public String getPasswordConfirm() {
         return passwordConfirm;
     }
-    
+
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
-    
+
     public void setManagerPerson(PersonBO managerPerson) {
         this.managerPerson = managerPerson;
     }
     private EncryptHelper eh = new EncryptHelper();
-    
+
     public String login() {
         Person p = new Person();
         p = managerPerson.checkLogin(this.getEmail(), eh.encriptMd5Password(this.getPassword()));
@@ -143,7 +143,7 @@ public class PersonManager extends Person {
         }
         return null;
     }
-    
+
     public String loginHome() {
         Person p = new Person();
         p = managerPerson.checkLogin(this.getEmail(), eh.encriptMd5Password(this.getPassword()));
@@ -169,27 +169,27 @@ public class PersonManager extends Person {
             return null;
         }
     }
-    
+
     public String logoutHome() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         session.removeAttribute("loginH");
         return "index";
     }
-    
+
     public List<Person> getAllPerson() {
         return managerPerson.findAllByRoles(0);
     }
-    
+
     public List<Person> getAllEmployee() {
         return managerPerson.findAllEmployee();
     }
-    
+
     public Person returnPersonLogin() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Person p = (Person) session.getAttribute("login");
         return p;
     }
-    
+
     public String editProfile() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Person p = (Person) session.getAttribute("login");
@@ -204,7 +204,7 @@ public class PersonManager extends Person {
         this.setBirthday(p.getBirthday());
         return "editProfile";
     }
-    
+
     public String logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         session.removeAttribute("login");
@@ -215,15 +215,15 @@ public class PersonManager extends Person {
         }
         return "login";
     }
-    
-    private void setError(String msg){
+
+    private void setError(String msg) {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         request.setAttribute("error", msg);
     }
-    
+
     public String savePerson() {
         try {
-            if(this.getPassword().isEmpty() || this.getPasswordConfirm().isEmpty()){
+            if (this.getPassword().isEmpty() || this.getPasswordConfirm().isEmpty()) {
                 setError("Please enter password");
                 return null;
             }
@@ -254,8 +254,20 @@ public class PersonManager extends Person {
             return null;
         }
     }
-    
+
     public String saveRegisterCustomer() {
+        if (this.getPersonName().isEmpty() || this.getEmail().isEmpty() || this.getAddress().isEmpty() || this.getPhone().isEmpty()) {
+            setError("Please fill in the information");
+            return null;
+        }
+        if (this.getPassword().isEmpty() || this.getPasswordConfirm().isEmpty()) {
+            setError("Please enter password");
+            return null;
+        }
+        if (!this.getPassword().equals(this.getPasswordConfirm())) {
+            setError("Passwords do not match");
+            return null;
+        }
         Person p = new Person();
         p.setPersonName(this.getPersonName());
         p.setEmail(this.getEmail());
@@ -278,13 +290,13 @@ public class PersonManager extends Person {
         }
     }
     Map m = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-    
+
     public String removePerson() {
         int id = Integer.parseInt(m.get("id").toString());
         boolean flag = managerPerson.removePerson(id);
         return null;
     }
-    
+
     public String editPersonById() {
         int id = Integer.parseInt(m.get("id").toString());
         String type = m.get("type").toString();
@@ -305,7 +317,7 @@ public class PersonManager extends Person {
         }
         return null;
     }
-    
+
     public String updatePerson() {
         Person p = new Person();
         p.setPersonId(this.getPersonId());
@@ -338,7 +350,7 @@ public class PersonManager extends Person {
         }
         return null;
     }
-    
+
     public String saveInforCustomer() {
         Person p = new Person();
         p.setPersonId(this.getPersonBySession().getPersonId());
@@ -358,13 +370,13 @@ public class PersonManager extends Person {
         }
         return null;
     }
-    
+
     public Person getPersonBySession() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Person p = (Person) session.getAttribute("loginH");
         return p;
     }
-    
+
     public String checkExistEmail() {
         Person flag = managerPerson.findByEmail(this.getEmail());
         if (flag != null) {
@@ -379,7 +391,7 @@ public class PersonManager extends Person {
         }
         return null;
     }
-    
+
     public String updateAvatar() {
         boolean iCheck = isCheckHasFile();
         if (iCheck) {
@@ -401,7 +413,7 @@ public class PersonManager extends Person {
         }
         return null;
     }
-    
+
     public String handleFileUpload() {
         String fileName = "";
         String uploadedFolder = "images/avatar";
@@ -410,9 +422,9 @@ public class PersonManager extends Person {
         System.out.println(result.getAbsolutePath());
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(result);
-            
+
             byte[] buffer = new byte[BUFFER_SIZE];
-            
+
             int bulk;
             InputStream inputStream = file.getInputstream();
             while (true) {
@@ -423,10 +435,10 @@ public class PersonManager extends Person {
                 fileOutputStream.write(buffer, 0, bulk);
                 fileOutputStream.flush();
             }
-            
+
             fileOutputStream.close();
             inputStream.close();
-            
+
             filePath = uploadedFolder + "/" + file.getFileName();
             fileName = file.getFileName();
             System.out.println("Upload File: " + fileName);
@@ -453,15 +465,15 @@ public class PersonManager extends Person {
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
-    
+
     public UploadedFile getFile() {
         return file;
     }
-    
+
     public void setFile(UploadedFile file) {
         this.file = file;
     }
-    
+
     private boolean isCheckHasFile() {
         try {
             String str = file.getFileName();
@@ -475,7 +487,7 @@ public class PersonManager extends Person {
             return false;
         }
     }
-    
+
     public String saveChangePassword() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         Person p = (Person) session.getAttribute("loginH");
@@ -502,15 +514,23 @@ public class PersonManager extends Person {
         return null;
     }
     private CartesianChartModel personModel;
-    
+
     public CartesianChartModel getPersonModel() {
         personModel = new CartesianChartModel();
         ChartSeries pChart = new ChartSeries();
         pChart.setLabel("Person");
-        List<PersonChart> aListPersonChat = managerPerson.getAllPersonChart();
-        for (Iterator<PersonChart> it = aListPersonChat.iterator(); it.hasNext();) {
-            PersonChart personChart = it.next();
-            pChart.set(String.valueOf(personChart.getMonth()), count);
+        List<Person> listOfUser = managerPerson.findAll();
+        if (listOfUser.size() >= 1) {
+            for (int i = 1; i <= 12; i++) {
+                int count = 0;
+                for (int j = 0; j < listOfUser.size(); j++) {
+                    Person p = listOfUser.get(j);
+                    if (p.getDateCreate().getMonth() == i - 1) {
+                        count++;
+                    }
+                }
+                pChart.set(String.valueOf(i), count);
+            }
         }
         personModel.addSeries(pChart);
         return personModel;
