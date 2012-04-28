@@ -160,7 +160,7 @@ public class PersonDAO extends HibernateDaoSupport implements IObjectDAO<Person>
                 int count = 0;
                 for (int j= 0; j < aListPerson.size(); j++) {
                     Person p = aListPerson.get(j);
-                    if (p.getDateCreate().getMonth() == i) {
+                    if (p.getDateCreate().getMonth() == i-1) {
                         count++;
                     }
                 }
