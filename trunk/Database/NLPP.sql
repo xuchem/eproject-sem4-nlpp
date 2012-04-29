@@ -1,11 +1,12 @@
 USE MASTER
 GO
-DROP DATABASE NLPP
+IF EXISTS (SELECT * FROM SYS.DATABASES WHERE name='NLPP')
+DROP DATABASE [NLPP]
 GO
 
-CREATE DATABASE NLPP
+CREATE DATABASE [NLPP]
 GO
-USE NLPP
+USE [NLPP]
 GO
 CREATE TABLE [Categories]
 (
@@ -77,6 +78,34 @@ CREATE TABLE [EventNotifications]
 	[CatID]				INT REFERENCES [Categories]([CatID])
 )
 GO
+
+GO
+USE MASTER
+GO
+IF EXISTS (SELECT * from syslogins WHERE name='KSCLogin')
+	EXEC sp_droplogin 'KSCLogin'
+GO
+
+EXEC sp_addlogin 'KSCLogin', 'KSCLogin', 'NLPP'
+GO
+
+USE [NLPP] 
+GO
+EXEC sp_grantdbaccess 'KSCLogin'
+GO
+GRANT ALL ON [Categories] TO [KSCLogin]
+GO
+GRANT ALL ON [Events] TO [KSCLogin]
+GO
+GRANT ALL ON [Users] TO [KSCLogin]
+GO
+GRANT ALL ON [EnrollEvents] TO [KSCLogin]
+GO
+GRANT ALL ON [Comments] TO [KSCLogin]
+GO
+GRANT ALL ON [EventNotifications] TO [KSCLogin]
+GO
+
 INSERT INTO [NLPP].[dbo].[Users]
            ([FullName]
            ,[Email]
@@ -91,7 +120,7 @@ INSERT INTO [NLPP].[dbo].[Users]
            ,[Status])
      VALUES
            ('Nguyen Luu Hung'
-           ,'Admin@gmail.com'
+           ,'nlppksc@gmail.com'
            ,'e10adc3949ba59abbe56e057f20f883e'
            ,'0985512120'
            ,'Male'

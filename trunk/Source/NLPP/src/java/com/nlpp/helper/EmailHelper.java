@@ -4,13 +4,20 @@
  */
 package com.nlpp.helper;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -19,12 +26,14 @@ import javax.mail.internet.MimeMessage;
 public class EmailHelper {
 
     public EmailHelper() {
-        
     }
 
-    public boolean sendMail(String subject, List to, String contents) {
-        String userName = "luavanloc@gmail.com";
-        String passWord = "nguyennga";
+    public boolean sendMail(String subject, List to, String contents, ServletContext sc) {
+        WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(sc);
+        java.util.Properties prop = context.getBean("applicationProperties", java.util.Properties.class);
+        String userName = prop.getProperty("email.id");
+        String passWord = prop.getProperty("email.password");
+        System.out.println("  emailid  " + userName + "  password  " + passWord);
         String host = "smtp.gmail.com";
         String port = "465";
         String starttls = "true";
@@ -76,5 +85,6 @@ public class EmailHelper {
             mex.printStackTrace();
             return false;
         }
+
     }
 }

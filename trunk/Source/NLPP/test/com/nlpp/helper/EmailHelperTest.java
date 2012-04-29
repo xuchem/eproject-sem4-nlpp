@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.nlpp.helper;
 
 import java.util.ArrayList;
@@ -51,10 +50,9 @@ public class EmailHelperTest {
         String contents = "Successfull";
         EmailHelper instance = new EmailHelper();
         boolean expResult = true;
-        boolean result = instance.sendMail(subject, to, contents);
+        boolean result = instance.sendMail(subject, to, contents, null);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-
 }
