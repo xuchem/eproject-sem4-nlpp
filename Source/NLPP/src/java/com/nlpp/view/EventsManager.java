@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import org.primefaces.model.UploadedFile;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
@@ -203,7 +204,8 @@ public class EventsManager extends Events {
                 try {
                     if (aListEmail.size() > 0) {
                         String contents = ev.getDetails() + "<br /><br /><br /><center>http://localhost:8084/NLPP/home/viewDetailsEvent.xhtml?id=" + ev.getEventId() + "</center><br /><br /><br />";
-                        helper.sendMail(ev.getEventName(), aListEmail, contents);
+                        helper.sendMail(ev.getEventName(), aListEmail, contents,
+                                (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext());
                     }
                 } catch (Exception e) {
                     System.out.println("Not Network:" + e.getMessage());
@@ -355,7 +357,7 @@ public class EventsManager extends Events {
                 int count = 0;
                 for (int j = 0; j < aListEvtChat.size(); j++) {
                     Events p = aListEvtChat.get(j);
-                    if (p.getDateCreate().getMonth() == i-1) {
+                    if (p.getDateCreate().getMonth() == i - 1) {
                         count++;
                     }
                 }
